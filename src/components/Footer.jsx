@@ -3,7 +3,7 @@ import backgroundImage from '../assets/footer-bg.jpg';
 
 const Logo = () => (
   <div className="text-2xl font-bold text-white">
-    GECO
+    Lazy Developer
   </div>
 );
 
@@ -28,7 +28,7 @@ const Footer = () => {
               </defs>
               <text fontSize="9">
                 <textPath xlinkHref="#circle">
-                  AWARD WINNING DESIGN STUDIO • GECO • 
+                  AWARD WINNING DESIGN STUDIO • Lazy Developer • 
                 </textPath>
               </text>
             </svg>
