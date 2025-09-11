@@ -18,11 +18,26 @@ export const officeData = [
   },
   {
     id: 3,
-    // This is the updated, working image URL
     image: 'https://images.unsplash.com/photo-1549638441-b787d2e11f14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
     title: 'Modern Lounge Area',
     tags: ['Lounge', 'Relaxation'],
     location: 'SAN FRANCISCO',
     category: 'california',
+  },
+  {
+    id: 4,
+    image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+    title: 'Collaborative Hub',
+    tags: ['Meeting', 'Teamwork'],
+    location: 'CHICAGO',
+    category: 'illinois',
+  },
+  {
+    id: 5,
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+    title: 'Executive Suite',
+    tags: ['Private', 'Luxury'],
+    location: 'MIAMI',
+    category: 'florida',
   },
 ];

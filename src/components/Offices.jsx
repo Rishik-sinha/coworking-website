@@ -1,6 +1,10 @@
 import React from 'react';
 import OfficeCard from './OfficeCard';
-import { officeData } from '../mockData'; // Import our mock data
+import { officeData } from '../mockData';
+
+// 1. Swiper component imports (Navigation module is no longer needed)
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 const Offices = () => {
   const filters = ['ALL', 'CALIFORNIA', 'TEXAS', 'FLORIDA', 'PENNSYLVANIA', 'ILLINOIS', 'NORTH CAROLINA'];
@@ -28,18 +32,28 @@ const Offices = () => {
           ))}
         </div>
 
-        {/* Office Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {/* 2. Updated Swiper component without navigation */}
+        <Swiper
+          loop={true}
+          spaceBetween={30}
+          slidesPerView={1}
+          breakpoints={{
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          className="mySwiper"
+        >
           {officeData.map((office) => (
-            <OfficeCard 
-              key={office.id}
-              image={office.image}
-              title={office.title}
-              tags={office.tags}
-              location={office.location}
-            />
+            <SwiperSlide key={office.id}>
+              <OfficeCard 
+                image={office.image}
+                title={office.title}
+                tags={office.tags}
+                location={office.location}
+              />
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </section>
   );

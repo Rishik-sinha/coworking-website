@@ -2,15 +2,16 @@ import React from 'react';
 import backgroundImage from '../assets/footer-bg.jpg';
 
 const Logo = () => (
-  <div className="text-2xl font-bold">
-    lazy developer
+  <div className="text-2xl font-bold text-white">
+    GECO
   </div>
 );
 
 const Footer = () => {
   return (
+    // Changed the height from h-[600px] to h-[300px]
     <footer 
-      className="relative h-[600px] text-white"
+      className="relative h-[300px] text-white"
       style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
       {/* Dark Overlay for readability */}
@@ -27,7 +28,7 @@ const Footer = () => {
               </defs>
               <text fontSize="9">
                 <textPath xlinkHref="#circle">
-                  AWARD WINNING DESIGN STUDIO • Lazy Developer • 
+                  AWARD WINNING DESIGN STUDIO • GECO • 
                 </textPath>
               </text>
             </svg>
@@ -36,11 +37,8 @@ const Footer = () => {
 
         {/* Bottom Bar: Logo, Links, Copyright */}
         <div className="container mx-auto mt-auto">
-          {/* Changed this div to flex-col on mobile, then flex on lg screens */}
-          {/* And adjusted alignment/spacing */}
           <div className="flex flex-col lg:flex-row justify-between items-center lg:items-center border-t border-white/20 pt-4 space-y-4 lg:space-y-0">
             <Logo />
-            {/* Added flex-col to links for mobile, flex-row for lg */}
             <div className="flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-6 text-sm text-center">
               <a href="#" className="hover:underline">PRIVACY POLICY</a>
               <a href="#" className="hover:underline">TERMS & CONDITIONS</a>
