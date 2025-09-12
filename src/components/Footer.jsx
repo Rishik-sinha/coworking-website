@@ -34,8 +34,8 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center text-gray-500 text-center md:text-left">
-          <p className="text-2xl font-bold text-white mb-4 md:mb-0">GECO</p>
-          <p className="text-sm mb-4 md:mb-0 order-last md:order-none">&copy; 2025 All Rights Reserved. GECO.</p>
+          <p className="text-2xl font-bold text-white mb-4 md:mb-0">Lazy Developer</p>
+          <p className="text-sm mb-4 md:mb-0 order-last md:order-none">&copy; 2025 All Rights Reserved. Lazy Developer.</p>
           <div className="flex space-x-4">
             {/* Real SVG Icons */}
             <a href="#" className="hover:text-white transition-colors" aria-label="Facebook">

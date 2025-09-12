@@ -50,7 +50,7 @@ const Header = () => {
               transition={{ duration: 0.5, delay: 0.5 }}
               className={`text-2xl font-bold ${isScrolled ? 'text-black' : 'text-white'}`}
             >
-              GECO
+              Lazy Developer
             </motion.div>
 
             <nav className="hidden lg:flex items-center space-x-8">

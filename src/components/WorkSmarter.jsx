@@ -26,9 +26,9 @@ const WorkSmarter = () => {
   };
 
   return (
-    // Updated this section to be a full-screen snap point
+    // Updated: Uses natural height on mobile, full screen on medium+
     <section 
-      className="relative h-screen w-full snap-start flex flex-col items-center justify-center text-white"
+      className="relative min-h-[70vh] md:h-screen w-full md:snap-start flex flex-col items-center justify-center text-white py-24 px-6"
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',

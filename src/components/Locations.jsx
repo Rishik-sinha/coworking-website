@@ -47,7 +47,7 @@ const Locations = () => {
       <div className="container mx-auto">
         <div className="flex justify-between items-end mb-12">
           <div>
-            <p className="text-gray-400 mb-2">Choose Your GECO Location</p>
+            <p className="text-gray-400 mb-2">Choose Your Lazy Location</p>
             <h2 className="text-5xl md:text-7xl font-bold">Locations</h2>
           </div>
           <div className="text-right">

@@ -63,7 +63,7 @@ const WhyChooseUs = () => {
     },
   };
   
-  const headingText = "WHY GECO?";
+  const headingText = "WHY Lazy?";
 
   return (
     // Added id="about-us" to this section
