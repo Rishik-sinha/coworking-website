@@ -14,7 +14,8 @@ import CookieBanner from './components/CookieBanner.jsx';
 function App() {
   return (
     <div>
-      <main className="h-screen overflow-y-scroll snap-y snap-mandatory">
+      {/* CHANGE: Removed "snap-y snap-mandatory" to allow for continuous scrolling */}
+      <main className="h-screen overflow-y-scroll">
         <Hero />
         <IdealSpace />
         {/* <WhyChooseUs /> */}
@@ -35,4 +36,3 @@ function App() {
 }
 
 export default App;
-
