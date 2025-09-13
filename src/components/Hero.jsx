@@ -9,11 +9,11 @@ const Hero = () => {
   const heroTextVariant = {
     hidden: {
       opacity: 0,
-      scale: 0.8, // Start slightly smaller and transparent
+      scale: 0.8,
     },
     visible: {
       opacity: 1,
-      scale: 1, // Animate to full size and opacity
+      scale: 1,
       transition: {
         duration: 0.8,
         ease: "easeOut",
@@ -24,7 +24,7 @@ const Hero = () => {
 
   return (
     <section 
-      className="relative h-screen w-full md:snap-start md:snap-always flex items-center justify-center text-white overflow-hidden p-6"
+      className="relative h-screen w-full flex items-center justify-center text-white overflow-hidden p-6 scroll-section"
     >
       <video
         src={backgroundVideo}
@@ -41,14 +41,13 @@ const Hero = () => {
           className="text-6xl md:text-8xl font-montserrat text-center leading-tight flex flex-col items-center"
           variants={heroTextVariant}
           initial="hidden"
-          // CHANGE: Switched from 'animate' to 'whileInView' to re-trigger the animation
           whileInView="visible"
-          // This ensures the animation re-triggers every time it's 50% visible
-          viewport={{ amount: 0.5 }} 
+          viewport={{ amount: 0.5 }}
         >
           <span className='block md:-translate-x-24 lg:-translate-x-32'>
             {line1}
           </span>
+          {/* CHANGE: Changed from negative to positive translate to shift the text right */}
           <span className='block md:translate-x-24 lg:translate-x-32'>
             {line2}
           </span>
@@ -59,4 +58,3 @@ const Hero = () => {
 };
 
 export default Hero;
-

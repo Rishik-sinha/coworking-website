@@ -10,21 +10,15 @@ const IdealSpace = () => {
 
   const container = {
     hidden: { opacity: 0 },
-    visible: (i = 1) => ({
+    visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.015, delayChildren: 0.2 * i },
-    }),
+      transition: { staggerChildren: 0.015, delayChildren: 0.2 },
+    },
   };
 
   const letter = {
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
   };
 
   const cardData = [
@@ -34,15 +28,17 @@ const IdealSpace = () => {
   ];
 
   return (
-    <section id="spaces" className="min-h-screen md:h-screen w-full md:snap-start md:snap-always flex items-center py-24 px-6">
-      <div className="container mx-auto">
+    <section 
+      id="spaces" 
+      className="relative z-20 -mt-24 rounded-t-[40px] min-h-screen w-full flex items-center bg-white text-black"
+    >
+      <div className="container mx-auto pt-40 pb-24 px-6">
         <motion.h2
-          className="text-3xl md:text-5xl text-white font-serif max-w-4xl mx-auto text-center mb-4"
+          className="text-3xl md:text-5xl font-sans max-w-4xl mx-auto text-center mb-4"
           variants={container}
           initial="hidden"
           whileInView="visible"
-          // CHANGE: Removed 'once: true'
-          viewport={{}}
+          viewport={{ once: false }}
         >
           {sentence.split("").map((char, index) => (
             <motion.span key={index} variants={letter}>
@@ -50,27 +46,26 @@ const IdealSpace = () => {
             </motion.span>
           ))}
         </motion.h2>
-        <p className="text-center text-gray-400 mb-12 md:mb-16">Discover Our Membership Plans</p>
+        <p className="text-center text-gray-500 mb-12 md:mb-16">Discover Our Membership Plans</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {cardData.map((card, index) => (
             <motion.div 
               key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              // CHANGE: Updated animation from scale-in to slide-in from bottom
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ scale: 1.05, y: -10 }}
-              // CHANGE: Removed 'once: true'
-              viewport={{}}
+              viewport={{ once: false }}
               transition={{ 
-                type: "spring", 
-                stiffness: 100, 
-                damping: 20, 
-                delay: 0.3 + (index * 0.15) 
+                duration: 0.6,
+                ease: "easeOut",
+                delay: 0.2 + (index * 0.1) 
               }}
             >
               <img src={card.img} alt={card.title} className="rounded-lg mb-4 h-64 w-full object-cover" />
-              <h3 className="text-xl text-white font-bold">{card.title}</h3>
-              <p className="text-gray-400">{card.description}</p>
+              <h3 className="text-xl font-bold">{card.title}</h3>
+              <p className="text-gray-500">{card.description}</p>
             </motion.div>
           ))}
         </div>
@@ -80,4 +75,3 @@ const IdealSpace = () => {
 };
 
 export default IdealSpace;
-

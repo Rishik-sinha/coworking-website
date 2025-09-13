@@ -2,21 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --- Lenis CSS --- */
-html.lenis {
-  height: auto;
+/* CHANGE: Set the base theme to light (white background, black text) */
+body {
+  @apply bg-white text-black;
 }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto; /* Let Lenis handle the scrolling */
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-/* --- End Lenis CSS --- */
-
+/* Base smooth scroll for anchor links, but Lenis will override user scrolling */
 html {
-  /* We keep this for fallback and anchor links, but Lenis will override it */
   scroll-behavior: smooth;
 }

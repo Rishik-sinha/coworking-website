@@ -35,8 +35,8 @@ const Locations = () => {
   };
 
   return (
-    // CHANGE: Added md:snap-always for consistent scrolling
-    <section className="min-h-screen md:h-screen w-full md:snap-start md:snap-always flex flex-col justify-center bg-black text-white py-24 px-6 overflow-hidden">
+    // CHANGE: Switched to light theme
+    <section className="min-h-screen w-full flex flex-col justify-center bg-white text-black py-24 overflow-hidden">
       <style>
         {`
           .swiper-wrapper {
@@ -44,11 +44,10 @@ const Locations = () => {
           }
         `}
       </style>
-      <div className="container mx-auto">
-        {/* CHANGE: Restructured this block to center the main heading */}
+      <div className="container mx-auto px-6 sm:px-8">
         <div className="flex justify-between items-center mb-12">
           <div className="flex-1 text-left">
-            <p className="text-gray-400 mb-2">Choose Your Lazy Location</p>
+            <p className="text-gray-500 mb-2">Choose Your Lazy Location</p>
           </div>
           
           <div className="text-center">
@@ -57,12 +56,12 @@ const Locations = () => {
 
           <div className="flex-1 text-right">
             <p className="text-xl font-bold">2 Cities</p>
-            <p className="text-gray-400">21 Locations</p>
+            <p className="text-gray-500">21 Locations</p>
           </div>
         </div>
-        {/* END CHANGE */}
       </div>
       
+      {/* The Swiper component for the marquee effect */}
       <div className="!pl-4 md:!pl-16 lg:!pl-32">
         <Swiper
           onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -71,11 +70,11 @@ const Locations = () => {
           spaceBetween={30}
           loop={true}
           speed={10000}
-          allowTouchMove={true} // Re-enable touch move for mobile
+          allowTouchMove={true}
           autoplay={{
             delay: 1,
             disableOnInteraction: false,
-            pauseOnMouseEnter: true, // This can handle the hover pause automatically
+            pauseOnMouseEnter: true,
           }}
           className="!overflow-visible"
         >
@@ -89,7 +88,7 @@ const Locations = () => {
                 className="w-[300px] md:w-[400px] relative"
               >
                 <img src={loc.img} alt={loc.title} className="rounded-lg mb-4 h-64 object-cover w-full" />
-                <p className="text-gray-300">{loc.title}</p>
+                <p className="text-gray-600">{loc.title}</p>
               </motion.div>
             </SwiperSlide>
           ))}

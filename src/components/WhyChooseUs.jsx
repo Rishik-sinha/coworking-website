@@ -24,33 +24,18 @@ const WhyChooseUs = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
   const sentenceVariant = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delay: 0.1,
-        staggerChildren: 0.03,
-      },
-    },
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.03 } },
   };
 
   const wordVariant = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0 },
   };
 
   const headingContainerVariant = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.2,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
   };
 
   const letterVariant = {
@@ -63,19 +48,19 @@ const WhyChooseUs = () => {
     },
   };
   
+  // CHANGE: Updated heading text
   const headingText = "WHY Lazy?";
 
   return (
-    // Added id="about-us" to this section
-    <section id="about-us" className="min-h-screen md:h-screen w-full md:snap-start md:snap-always flex items-center justify-center bg-black text-white py-24 px-6">
+    // CHANGE: Switched to light theme
+    <section id="about-us" className="min-h-screen w-full flex items-center justify-center bg-white text-black py-24 px-6">
       <div className="container mx-auto">
         <motion.h2 
           className="text-5xl md:text-8xl font-bold text-center mb-12 md:mb-16 flex justify-center overflow-hidden py-4"
           variants={headingContainerVariant}
           initial="hidden"
           whileInView="visible"
-          // CHANGE: Removed 'once: true'
-          viewport={{}}
+          viewport={{ once: false }}
         >
           {headingText.split("").map((char, index) => (
             <motion.span
@@ -95,23 +80,26 @@ const WhyChooseUs = () => {
           {accordionData.map((item, index) => (
             <motion.div 
               key={index} 
-              className="relative border-b border-gray-700 py-6 cursor-pointer"
+              // CHANGE: Updated border color
+              className="relative border-b border-gray-300 py-6 cursor-pointer"
               onMouseEnter={() => setOpenIndex(index)}
               initial="initial"
               whileHover="hover"
             >
               <div className="w-full flex justify-between items-center text-left text-xl md:text-3xl font-medium">
                 <span className="flex-grow">{item.title}</span>
-                <span className="text-gray-400 ml-4">0{index + 1}</span>
+                {/* CHANGE: Updated text color for numbers */}
+                <span className="text-gray-500 ml-4">0{index + 1}</span>
               </div>
               
               <motion.div 
-                className="absolute bottom-0 left-0 h-[1px] bg-white"
+                // CHANGE: Underline is now black to show up on the white background
+                className="absolute bottom-0 left-0 h-[2px] bg-black"
                 variants={{
                   initial: { width: '0%' },
                   hover: { width: '100%' }
                 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
               />
 
               <AnimatePresence>
@@ -124,7 +112,8 @@ const WhyChooseUs = () => {
                     className="overflow-hidden"
                   >
                     <motion.p
-                      className="text-gray-400 max-w-2xl text-base md:text-lg"
+                      // CHANGE: Updated text color for description
+                      className="text-gray-600 max-w-2xl text-base md:text-lg"
                       variants={sentenceVariant}
                       initial="hidden"
                       animate="visible"

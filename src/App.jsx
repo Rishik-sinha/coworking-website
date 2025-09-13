@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Lenis from '@studio-freight/lenis';
 
 import Header from './components/Header';
@@ -7,47 +7,72 @@ import IdealSpace from './components/IdealSpace';
 import WhyChooseUs from './components/WhyChooseUs';
 import WorkSmarter from './components/WorkSmarter';
 import Locations from './components/Locations';
-import Membership from './components/Membership';
 import Sketch from './components/Sketch';
+import Membership from './components/Membership';
 import Footer from './components/Footer';
-import CookieBanner from './components/CookieBanner';
+import CookieBanner from './components/CookieBanner'; // CHANGE: Imported the CookieBanner
 
 function App() {
+  const mainRef = useRef(null);
+  const [sections, setSections] = useState([]);
+  const [currentSectionIndex, setCurrentSectionIndex]
+  = useState(0);
+  const isScrolling = useRef(false);
+  const lenisRef = useRef(null);
 
-  // This useEffect hook will run once when the component mounts
   useEffect(() => {
-    // Initialize Lenis
     const lenis = new Lenis({
-      // Lower lerp value makes the scroll slower and smoother.
-      // The default is 0.1. We'll use 0.07 for a slower feel.
-      // You can adjust this value to your liking!
-      lerp: 0.07, 
-      smoothWheel: true, // Ensures smooth scrolling for mouse wheels
+      lerp: 0.1, 
+      duration: 1.0, 
     });
+    lenisRef.current = lenis;
 
-    // This function will be called on every animation frame
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-
-    // Start the animation loop
     requestAnimationFrame(raf);
 
-    // Cleanup function to destroy Lenis when the component unmounts
+    if (mainRef.current) {
+      const sectionElements = mainRef.current.querySelectorAll('.scroll-section');
+      setSections(Array.from(sectionElements));
+    }
+
+    const handleWheel = (event) => {
+      if (isScrolling.current || sections.length === 0) {
+        event.preventDefault();
+        return;
+      };
+      
+      event.preventDefault();
+      const direction = event.deltaY > 0 ? 1 : -1;
+      const nextIndex = currentSectionIndex + direction;
+
+      if (nextIndex >= 0 && nextIndex < sections.length) {
+        isScrolling.current = true;
+        setCurrentSectionIndex(nextIndex);
+        lenisRef.current.scrollTo(sections[nextIndex], {
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+        
+        setTimeout(() => {
+          isScrolling.current = false;
+        }, 1000); 
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+
     return () => {
       lenis.destroy();
+      window.removeEventListener('wheel', handleWheel);
     };
-  }, []); // The empty array ensures this effect runs only once
+  }, [sections.length, currentSectionIndex]);
 
   return (
-    <div className="bg-black">
+    <div>
       <Header />
-      {/* Change: Removed scroll container and CSS snap classes.
-        This allows the entire page to scroll naturally, which Lenis can then control.
-        Removed: `h-screen`, `overflow-y-scroll`, `md:snap-y`, `md:snap-mandatory`
-      */}
-      <main>
+      <main ref={mainRef}>
         <Hero />
         <IdealSpace />
         <WhyChooseUs />
@@ -57,10 +82,9 @@ function App() {
         <Membership />
         <Footer />
       </main>
-      <CookieBanner />
+      <CookieBanner /> {/* CHANGE: Added the CookieBanner component here */}
     </div>
   );
 }
 
 export default App;
-

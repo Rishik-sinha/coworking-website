@@ -3,76 +3,62 @@ import { motion } from 'framer-motion';
 import backgroundImage from '../assets/work-smarter-bg.jpg';
 
 const WorkSmarter = () => {
-  const line1 = "Work Smarter,";
-  const line2 = "Not Harder";
-
-  const sentenceVariant = {
+  const containerVariant = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05,
+        staggerChildren: 0.3,
         delayChildren: 0.2,
       },
     },
   };
 
-  const letterVariant = {
+  const itemVariant = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
+      transition: { duration: 0.8, ease: 'easeOut' },
     },
   };
 
   return (
+    // CHANGE: The section is now full-width, with rounding ONLY on the top.
     <section 
-      className="relative min-h-[70vh] md:h-screen w-full md:snap-start md:snap-always flex flex-col items-center justify-center text-white py-24 px-6"
+      className="relative z-30 -mt-24 rounded-t-[40px] h-screen w-full flex flex-col items-center justify-center text-white px-6 pt-24"
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed' // This creates the parallax effect
+        backgroundAttachment: 'fixed'
       }}
     >
-      <div className="absolute inset-0 bg-black/50 z-0"></div>
-      <div className="relative z-10 text-center">
+      {/* The overlay also needs to only have rounded top corners */}
+      <div className="absolute inset-0 bg-black/60 z-0 rounded-t-[40px]"></div>
+      
+      <motion.div 
+        className="relative z-10 text-center"
+        variants={containerVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false }}
+      >
         <motion.h2 
+          variants={itemVariant}
           className="text-5xl md:text-7xl font-bold leading-tight"
-          variants={sentenceVariant}
-          initial="hidden"
-          whileInView="visible"
-          // CHANGE: Removed 'once: true'
-          viewport={{}}
         >
-          <span className="flex justify-center">
-            {line1.split("").map((char, index) => (
-              <motion.span key={index} variants={letterVariant}>
-                {char}
-              </motion.span>
-            ))}
-          </span>
-          <span className="flex justify-center">
-            {line2.split("").map((char, index) => (
-              <motion.span key={index} variants={letterVariant}>
-                {char}
-              </motion.span>
-            ))}
-          </span>
+          Work Smarter,<br/>Not Harder
         </motion.h2>
 
         <motion.a 
+          variants={itemVariant}
           href="#" 
           className="mt-8 inline-block bg-lime-400 text-black font-bold py-3 px-8 rounded-full hover:bg-lime-500 transition-colors"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          // CHANGE: Removed 'once: true'
-          viewport={{}}
-          transition={{ duration: 0.5, delay: 0.8 }}
         >
           Book A Space
         </motion.a>
-      </div>
+      </motion.div>
     </section>
   );
 };
