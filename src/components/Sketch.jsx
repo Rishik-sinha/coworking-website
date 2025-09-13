@@ -4,8 +4,21 @@ import sketchImage from '../assets/sketch.jpg';
 
 const Sketch = () => {
   return (
-    <section className="relative h-screen snap-start w-full flex items-center bg-white text-black py-24 px-6">
+    // ADDED: id for navigation
+    <section id="about-us" className="min-h-screen w-full flex flex-col justify-center bg-white text-black py-24 px-6">
       <div className="container mx-auto">
+        
+        {/* ADDED: Centered heading with pop animation */}
+        <motion.h2 
+          className="text-5xl md:text-7xl font-bold text-center mb-16"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        >
+          Productivity blueprint
+        </motion.h2>
+
         {/* Main grid for the responsive two-column layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           
@@ -26,9 +39,7 @@ const Sketch = () => {
             viewport={{ once: false }}
             transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              A Blueprint for Productivity
-            </h2>
+            {/* REMOVED: Heading was moved above */}
             <p className="text-gray-600 mb-4 text-lg">
               Every inch of our workspace is meticulously planned to foster a dynamic environment. The layout balances open, collaborative zones with private, focused areas, ensuring a productive workflow for every work style.
             </p>

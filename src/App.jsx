@@ -3,8 +3,8 @@ import React from 'react';
 import Hero from './components/Hero.jsx';
 import IdealSpace from './components/IdealSpace.jsx';
 // Note: These components are still missing. The app won't run without them.
-// import WhyChooseUs from './components/WhyChooseUs';
-// import WorkSmarter from './components/WorkSmarter';
+import WhyChooseUs from './components/WhyChooseUs';
+import WorkSmarter from './components/WorkSmarter';
 import Locations from './components/Locations.jsx';
 import Sketch from './components/Sketch.jsx';
 import Membership from './components/Membership.jsx';
@@ -18,8 +18,8 @@ function App() {
       <main className="h-screen overflow-y-scroll">
         <Hero />
         <IdealSpace />
-        {/* <WhyChooseUs /> */}
-        {/* <WorkSmarter /> */}
+        <WhyChooseUs /> 
+        <WorkSmarter />
         <Locations />
         <Sketch />
         

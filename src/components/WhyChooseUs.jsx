@@ -48,7 +48,7 @@ const WhyChooseUs = () => {
     },
   };
   
-  const headingText = "WHY UHUB?";
+  const headingText = "WHY Lazy?";
 
   return (
     <section id="about-us" className="min-h-screen w-full flex items-center justify-center bg-white text-black py-24 px-6 snap-start">
