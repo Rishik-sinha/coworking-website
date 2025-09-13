@@ -24,9 +24,8 @@ const WorkSmarter = () => {
   };
 
   return (
-    // CHANGE: The section is now full-width, with rounding ONLY on the top.
     <section 
-      className="relative z-30 -mt-24 rounded-t-[40px] h-screen w-full flex flex-col items-center justify-center text-white px-6 pt-24"
+      className="relative z-30 -mt-24 rounded-t-[40px] h-screen w-full flex flex-col items-center justify-center text-white px-6 pt-24 snap-start"
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
@@ -34,7 +33,6 @@ const WorkSmarter = () => {
         backgroundAttachment: 'fixed'
       }}
     >
-      {/* The overlay also needs to only have rounded top corners */}
       <div className="absolute inset-0 bg-black/60 z-0 rounded-t-[40px]"></div>
       
       <motion.div 

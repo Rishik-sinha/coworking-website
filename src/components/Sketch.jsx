@@ -4,7 +4,7 @@ import sketchImage from '../assets/sketch.jpg';
 
 const Sketch = () => {
   return (
-    <section className="min-h-screen w-full flex items-center bg-white text-black py-24 px-6">
+    <section className="relative h-screen snap-start w-full flex items-center bg-white text-black py-24 px-6">
       <div className="container mx-auto">
         {/* Main grid for the responsive two-column layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">

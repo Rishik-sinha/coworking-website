@@ -1,31 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import backgroundVideo from '../assets/main.mp4';
+import Header from './Header.jsx'; // Import the Header component
 
 const Hero = () => {
   const line1 = "Craft your";
   const line2 = "success here";
 
   const heroTextVariant = {
-    hidden: {
-      opacity: 0,
-      scale: 0.8,
-    },
+    hidden: { opacity: 0, scale: 0.8 },
     visible: {
       opacity: 1,
       scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-        delay: 0.5,
-      },
+      transition: { duration: 0.8, ease: "easeOut", delay: 0.5 },
     },
   };
 
   return (
+    // The parent section needs to be relative for the sticky header to work correctly within it.
     <section 
-      className="relative h-screen w-full flex items-center justify-center text-white overflow-hidden p-6 scroll-section"
+      className="relative h-screen w-full flex items-center justify-center text-white overflow-hidden p-6 snap-start"
     >
+      {/* MOVED HEADER HERE */}
+      <Header />
+
       <video
         src={backgroundVideo}
         autoPlay
@@ -47,7 +45,6 @@ const Hero = () => {
           <span className='block md:-translate-x-24 lg:-translate-x-32'>
             {line1}
           </span>
-          {/* CHANGE: Changed from negative to positive translate to shift the text right */}
           <span className='block md:translate-x-24 lg:translate-x-32'>
             {line2}
           </span>
@@ -58,3 +55,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

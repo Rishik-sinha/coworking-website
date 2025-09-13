@@ -33,8 +33,12 @@ const pricingData = [
 
 const Membership = () => {
   return (
-    // Added pb-48 (bottom padding) to create space for the footer overlap.
-    <section id="membership" className="relative z-10 min-h-screen w-full flex items-center bg-white text-black pt-24 pb-48 px-6">
+    // Added position relative and z-index.
+    // This ensures this section scrolls OVER the sticky footer.
+    <section 
+      id="membership"
+      className="relative z-10 min-h-screen w-full flex items-center bg-white text-black py-24 px-6 snap-start"
+    >
       <div className="container mx-auto">
         <h2 className="text-5xl md:text-7xl font-bold text-center mb-12 md:mb-16">Membership</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">

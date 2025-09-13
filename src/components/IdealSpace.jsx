@@ -30,7 +30,7 @@ const IdealSpace = () => {
   return (
     <section 
       id="spaces" 
-      className="relative z-20 -mt-24 rounded-t-[40px] min-h-screen w-full flex items-center bg-white text-black"
+      className="relative z-20 -mt-24 rounded-t-[40px] min-h-screen w-full flex items-center bg-white text-black snap-start"
     >
       <div className="container mx-auto pt-40 pb-24 px-6">
         <motion.h2
@@ -52,7 +52,6 @@ const IdealSpace = () => {
           {cardData.map((card, index) => (
             <motion.div 
               key={index}
-              // CHANGE: Updated animation from scale-in to slide-in from bottom
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ scale: 1.05, y: -10 }}

@@ -36,7 +36,7 @@ const Locations = () => {
 
   return (
     // CHANGE: Switched to light theme
-    <section className="min-h-screen w-full flex flex-col justify-center bg-white text-black py-24 overflow-hidden">
+   <section className="relative h-screen snap-start w-full flex flex-col justify-center bg-white text-black py-24 overflow-hidden">
       <style>
         {`
           .swiper-wrapper {
