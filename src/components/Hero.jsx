@@ -3,41 +3,28 @@ import { motion } from 'framer-motion';
 import backgroundVideo from '../assets/main.mp4';
 
 const Hero = () => {
-  const sentence = "Craft your success here";
+  const line1 = "Craft your";
+  const line2 = "success here";
 
-  const container = {
-    hidden: { opacity: 0 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: 0.5 * i },
-    }),
-  };
-
-  const letter = {
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 200,
-      },
-    },
+  const heroTextVariant = {
     hidden: {
       opacity: 0,
-      y: 20,
+      scale: 0.8, // Start slightly smaller and transparent
+    },
+    visible: {
+      opacity: 1,
+      scale: 1, // Animate to full size and opacity
       transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 200,
+        duration: 0.8,
+        ease: "easeOut",
+        delay: 0.5,
       },
     },
   };
 
   return (
-    // Updated: Uses full screen height on medium screens+, and natural height on mobile
     <section 
-      className="relative h-screen w-full md:snap-start flex items-end justify-center text-white overflow-hidden pb-20 pt-40 md:pt-20"
+      className="relative h-screen w-full md:snap-start md:snap-always flex items-center justify-center text-white overflow-hidden p-6"
     >
       <video
         src={backgroundVideo}
@@ -49,18 +36,22 @@ const Hero = () => {
       />
       <div className="absolute inset-0 bg-black/40 z-10"></div>
       
-      <div className="relative z-20 container mx-auto px-6 w-full">
+      <div className="relative z-20 container mx-auto w-full">
         <motion.h1 
-          className="text-6xl md:text-8xl font-serif text-left"
-          variants={container}
+          className="text-6xl md:text-8xl font-montserrat text-center leading-tight flex flex-col items-center"
+          variants={heroTextVariant}
           initial="hidden"
-          animate="visible"
+          // CHANGE: Switched from 'animate' to 'whileInView' to re-trigger the animation
+          whileInView="visible"
+          // This ensures the animation re-triggers every time it's 50% visible
+          viewport={{ amount: 0.5 }} 
         >
-          {sentence.split("").map((char, index) => (
-            <motion.span key={index} variants={letter}>
-              {char}
-            </motion.span>
-          ))}
+          <span className='block md:-translate-x-24 lg:-translate-x-32'>
+            {line1}
+          </span>
+          <span className='block md:translate-x-24 lg:translate-x-32'>
+            {line2}
+          </span>
         </motion.h1>
       </div>
     </section>

@@ -26,9 +26,8 @@ const WorkSmarter = () => {
   };
 
   return (
-    // Updated: Uses natural height on mobile, full screen on medium+
     <section 
-      className="relative min-h-[70vh] md:h-screen w-full md:snap-start flex flex-col items-center justify-center text-white py-24 px-6"
+      className="relative min-h-[70vh] md:h-screen w-full md:snap-start md:snap-always flex flex-col items-center justify-center text-white py-24 px-6"
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
@@ -43,7 +42,8 @@ const WorkSmarter = () => {
           variants={sentenceVariant}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          // CHANGE: Removed 'once: true'
+          viewport={{}}
         >
           <span className="flex justify-center">
             {line1.split("").map((char, index) => (
@@ -66,7 +66,8 @@ const WorkSmarter = () => {
           className="mt-8 inline-block bg-lime-400 text-black font-bold py-3 px-8 rounded-full hover:bg-lime-500 transition-colors"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          // CHANGE: Removed 'once: true'
+          viewport={{}}
           transition={{ duration: 0.5, delay: 0.8 }}
         >
           Book A Space
@@ -77,4 +78,3 @@ const WorkSmarter = () => {
 };
 
 export default WorkSmarter;
-

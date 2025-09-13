@@ -67,14 +67,15 @@ const WhyChooseUs = () => {
 
   return (
     // Added id="about-us" to this section
-    <section id="about-us" className="min-h-screen md:h-screen w-full md:snap-start flex items-center justify-center bg-black text-white py-24 px-6">
+    <section id="about-us" className="min-h-screen md:h-screen w-full md:snap-start md:snap-always flex items-center justify-center bg-black text-white py-24 px-6">
       <div className="container mx-auto">
         <motion.h2 
           className="text-5xl md:text-8xl font-bold text-center mb-12 md:mb-16 flex justify-center overflow-hidden py-4"
           variants={headingContainerVariant}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          // CHANGE: Removed 'once: true'
+          viewport={{}}
         >
           {headingText.split("").map((char, index) => (
             <motion.span
@@ -150,4 +151,3 @@ const WhyChooseUs = () => {
 };
 
 export default WhyChooseUs;
-

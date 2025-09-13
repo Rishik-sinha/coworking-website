@@ -35,8 +35,8 @@ const Locations = () => {
   };
 
   return (
-    // Updated: Uses natural height on mobile, full screen on medium+
-    <section className="min-h-screen md:h-screen w-full md:snap-start flex flex-col justify-center bg-black text-white py-24 px-6 overflow-hidden">
+    // CHANGE: Added md:snap-always for consistent scrolling
+    <section className="min-h-screen md:h-screen w-full md:snap-start md:snap-always flex flex-col justify-center bg-black text-white py-24 px-6 overflow-hidden">
       <style>
         {`
           .swiper-wrapper {
@@ -45,16 +45,22 @@ const Locations = () => {
         `}
       </style>
       <div className="container mx-auto">
-        <div className="flex justify-between items-end mb-12">
-          <div>
+        {/* CHANGE: Restructured this block to center the main heading */}
+        <div className="flex justify-between items-center mb-12">
+          <div className="flex-1 text-left">
             <p className="text-gray-400 mb-2">Choose Your Lazy Location</p>
+          </div>
+          
+          <div className="text-center">
             <h2 className="text-5xl md:text-7xl font-bold">Locations</h2>
           </div>
-          <div className="text-right">
+
+          <div className="flex-1 text-right">
             <p className="text-xl font-bold">2 Cities</p>
             <p className="text-gray-400">21 Locations</p>
           </div>
         </div>
+        {/* END CHANGE */}
       </div>
       
       <div className="!pl-4 md:!pl-16 lg:!pl-32">
@@ -94,4 +100,3 @@ const Locations = () => {
 };
 
 export default Locations;
-

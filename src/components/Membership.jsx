@@ -33,8 +33,8 @@ const pricingData = [
 
 const Membership = () => {
   return (
-    // Added id="membership" to this section
-    <section id="membership" className="min-h-screen md:h-screen w-full md:snap-start flex items-center bg-black text-white py-24 px-6">
+    // CHANGE: Added md:snap-always
+    <section id="membership" className="min-h-screen md:h-screen w-full md:snap-start md:snap-always flex items-center bg-black text-white py-24 px-6">
       <div className="container mx-auto">
         <h2 className="text-5xl md:text-7xl font-bold text-center mb-12 md:mb-16">Membership</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -44,7 +44,8 @@ const Membership = () => {
               className="bg-[#1C1C1C] border border-gray-800 rounded-lg p-8 flex flex-col"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              // CHANGE: Removed 'once: true'
+              viewport={{}}
               transition={{ duration: 0.5, delay: index * 0.2 }}
             >
               <h3 className="text-2xl font-bold mb-2 text-white">{tier.plan}</h3>
@@ -69,4 +70,3 @@ const Membership = () => {
 };
 
 export default Membership;
-

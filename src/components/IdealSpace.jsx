@@ -34,14 +34,15 @@ const IdealSpace = () => {
   ];
 
   return (
-    <section id="spaces" className="min-h-screen md:h-screen w-full md:snap-start flex items-center py-24 px-6">
+    <section id="spaces" className="min-h-screen md:h-screen w-full md:snap-start md:snap-always flex items-center py-24 px-6">
       <div className="container mx-auto">
         <motion.h2
           className="text-3xl md:text-5xl text-white font-serif max-w-4xl mx-auto text-center mb-4"
           variants={container}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          // CHANGE: Removed 'once: true'
+          viewport={{}}
         >
           {sentence.split("").map((char, index) => (
             <motion.span key={index} variants={letter}>
@@ -57,8 +58,9 @@ const IdealSpace = () => {
               key={index}
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ scale: 1.05, y: -10 }} // Added hover effect
-              viewport={{ once: true }}
+              whileHover={{ scale: 1.05, y: -10 }}
+              // CHANGE: Removed 'once: true'
+              viewport={{}}
               transition={{ 
                 type: "spring", 
                 stiffness: 100, 

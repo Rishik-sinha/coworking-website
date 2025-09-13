@@ -1,32 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LoginModal from './LoginModal';
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); 
+  const [isLoginModalOpen, setIsLoginModalOpen] = React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Function to handle smooth scrolling
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: 'smooth' });
     }
-    // Close mobile menu after clicking a link
     setIsMobileMenuOpen(false);
   };
 
-  const NavLinks = ({ isMobile = false }) => (
+  const NavLinks = () => (
     <>
       <a href="#spaces" onClick={(e) => handleNavClick(e, 'spaces')} className="hover:opacity-70 transition-opacity">Spaces</a>
       <a href="#membership" onClick={(e) => handleNavClick(e, 'membership')} className="hover:opacity-70 transition-opacity">Membership</a>
@@ -40,7 +29,8 @@ const Header = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md text-black' : 'bg-transparent text-white'}`}
+        // CHANGE: Changed positioning to absolute and removed background styles.
+        className="absolute top-0 left-0 w-full z-40 text-white"
       >
         <div className="container mx-auto flex justify-between items-center p-6">
           <div className="flex items-center space-x-8">
@@ -48,7 +38,7 @@ const Header = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className={`text-2xl font-bold ${isScrolled ? 'text-black' : 'text-white'}`}
+              className="text-2xl font-bold"
             >
               Lazy Developer
             </motion.div>
@@ -61,7 +51,7 @@ const Header = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <button 
               onClick={() => setIsLoginModalOpen(true)}
-              className={`hover:opacity-70 transition-opacity ${isScrolled ? 'text-black' : 'text-white'}`}
+              className="hover:opacity-70 transition-opacity"
             >
               Log In
             </button>
@@ -83,10 +73,11 @@ const Header = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className={`lg:hidden ${isScrolled ? 'bg-white text-black' : 'bg-black/80 backdrop-blur-md text-white'}`}
+              // CHANGE: The mobile menu background is now also fully transparent
+              className="lg:hidden bg-transparent text-white"
             >
               <nav className="flex flex-col items-center space-y-6 py-8">
-                <NavLinks isMobile={true} />
+                <NavLinks />
                 <button 
                   onClick={() => {
                     setIsLoginModalOpen(true);

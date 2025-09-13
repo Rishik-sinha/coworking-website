@@ -2,7 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+/* --- Lenis CSS --- */
+html.lenis {
+  height: auto;
 }
 
+.lenis.lenis-smooth {
+  scroll-behavior: auto; /* Let Lenis handle the scrolling */
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+/* --- End Lenis CSS --- */
+
+html {
+  /* We keep this for fallback and anchor links, but Lenis will override it */
+  scroll-behavior: smooth;
+}
