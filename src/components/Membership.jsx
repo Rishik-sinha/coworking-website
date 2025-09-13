@@ -33,11 +33,10 @@ const pricingData = [
 
 const Membership = () => {
   return (
-    // Added position relative and z-index.
-    // This ensures this section scrolls OVER the sticky footer.
+    // CHANGE: Removed relative and z-10 classes.
     <section 
       id="membership"
-      className="relative z-10 min-h-screen w-full flex items-center bg-white text-black py-24 px-6 snap-start"
+      className="min-h-screen w-full flex items-center bg-white text-black py-24 px-6"
     >
       <div className="container mx-auto">
         <h2 className="text-5xl md:text-7xl font-bold text-center mb-12 md:mb-16">Membership</h2>
@@ -73,4 +72,3 @@ const Membership = () => {
 };
 
 export default Membership;
-
