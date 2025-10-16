@@ -1,9 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 import publicSpaceImg from '../assets/public-space.jpg';
 import privateSpaceImg from '../assets/private-space.jpg';
 import meetingRoomImg from '../assets/meeting-room.jpg';
+import { path } from 'framer-motion/client';
 
 const IdealSpace = () => {
   const sentence = "Finding the ideal space is a thing of the past. Welcome to a new era of productivity and collaboration.";
@@ -22,11 +24,10 @@ const IdealSpace = () => {
   };
 
   const cardData = [
-    { img: publicSpaceImg, title: 'Public Space', description: 'Embrace the energy of our public spaces' },
-    { img: privateSpaceImg, title: 'Private Space', description: 'Focus of your own private space' },
-    { img: meetingRoomImg, title: 'Meeting Room', description: 'We provide the ideal setting for productive collaboration' }
-  ];
-
+  { img: publicSpaceImg, title: 'Public Space', description: 'Embrace the energy of our public spaces', path: '/find-a-space' },
+  { img: privateSpaceImg, title: 'Private Space', description: 'Focus of your own private space', path: '/find-a-space' },
+  { img: meetingRoomImg, title: 'Meeting Room', description: 'We provide the ideal setting for productive collaboration', path: '/find-a-space' }
+];
   return (
     <section 
       id="spaces" 
@@ -50,6 +51,7 @@ const IdealSpace = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {cardData.map((card, index) => (
+            <Link to={card.path} key={index}>
             <motion.div 
               key={index}
               initial={{ opacity: 0, y: 50 }}
@@ -66,6 +68,7 @@ const IdealSpace = () => {
               <h3 className="text-xl font-bold">{card.title}</h3>
               <p className="text-gray-500">{card.description}</p>
             </motion.div>
+            </Link>
           ))}
         </div>
       </div>

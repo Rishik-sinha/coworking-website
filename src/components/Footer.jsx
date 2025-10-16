@@ -6,12 +6,19 @@ const Footer = () => {
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
   const handleNavClick = (e, targetId) => {
-    e.preventDefault();
+  e.preventDefault();
+  // First, check if we are on the homepage
+  if (window.location.pathname.endsWith('/')) {
+    // If we are on the homepage, scroll smoothly
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  } else {
+    // If not on the homepage, navigate back to the correct section
+    window.location.href = `/#${targetId}`;
+  }
+};
 
   const footerVariant = {
     hidden: { opacity: 0, y: 50 },

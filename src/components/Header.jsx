@@ -2,11 +2,18 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LoginModal from './LoginModal';
 
-const Header = () => {
+// The Header now accepts a 'variant' prop to switch between styles
+const Header = ({ variant = 'dark' }) => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Function to handle smooth scrolling
+  // Determine colors based on the variant prop
+  const isLightTheme = variant === 'light';
+  const textColor = isLightTheme ? 'text-gray-700' : 'text-white';
+  const navLinkColor = isLightTheme ? 'text-gray-500 hover:text-black' : 'hover:opacity-70';
+  const headerBg = isLightTheme ? 'fixed bg-white/80 backdrop-blur-sm shadow-sm' : 'absolute bg-transparent';
+  const mobileMenuBg = isLightTheme ? 'bg-white/95 backdrop-blur-md' : 'bg-black/80 backdrop-blur-md';
+
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
@@ -18,18 +25,15 @@ const Header = () => {
 
   const NavLinks = () => (
     <>
-      <a href="#spaces" onClick={(e) => handleNavClick(e, 'spaces')} className="hover:opacity-70 transition-opacity">Spaces</a>
-      <a href="#membership" onClick={(e) => handleNavClick(e, 'membership')} className="hover:opacity-70 transition-opacity">Membership</a>
-      <a href="#about-us" onClick={(e) => handleNavClick(e, 'about-us')} className="hover:opacity-70 transition-opacity">About Us</a>
+      <a href="#spaces" onClick={(e) => handleNavClick(e, 'spaces')} className={`${navLinkColor} transition-colors`}>Spaces</a>
+      <a href="#membership" onClick={(e) => handleNavClick(e, 'membership')} className={`${navLinkColor} transition-colors`}>Membership</a>
+      <a href="#about-us" onClick={(e) => handleNavClick(e, 'about-us')} className={`${navLinkColor} transition-colors`}>About Us</a>
     </>
   );
 
   return (
     <>
-      <header
-        // CHANGE: Switched from 'fixed' to 'absolute' to make it part of the hero scroll
-        className="absolute top-0 left-0 w-full z-40 bg-transparent text-white"
-      >
+      <header className={`${headerBg} ${textColor} top-0 left-0 w-full z-40`}>
         <motion.div
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -37,9 +41,7 @@ const Header = () => {
           className="container mx-auto flex justify-between items-center p-6"
         >
           <div className="flex items-center space-x-8">
-            <div className="text-2xl font-bold">
-              Lazy Developer
-            </div>
+            <div className="text-2xl font-bold">Lazy Developer</div>
             <nav className="hidden lg:flex items-center space-x-8">
               <NavLinks />
             </nav>
@@ -48,7 +50,7 @@ const Header = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <button
               onClick={() => setIsLoginModalOpen(true)}
-              className="hover:opacity-70 transition-opacity"
+              className={`${navLinkColor} transition-colors`}
             >
               Log In
             </button>
@@ -70,14 +72,13 @@ const Header = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              // CHANGE: Simplified mobile menu background
-              className="lg:hidden bg-black/80 backdrop-blur-md text-white"
+              className={`lg:hidden ${mobileMenuBg}`}
             >
               <nav className="flex flex-col items-center space-y-6 py-8">
                 <NavLinks />
                 <button
                   onClick={() => { setIsLoginModalOpen(true); setIsMobileMenuOpen(false); }}
-                  className="hover:opacity-70 transition-opacity"
+                  className={`${navLinkColor} transition-colors`}
                 >
                   Log In
                 </button>
@@ -96,4 +97,3 @@ const Header = () => {
 };
 
 export default Header;
-
